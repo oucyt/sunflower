@@ -35,13 +35,15 @@ object InjectorUtils {
     }
 
     private fun getGardenPlantingRepository(context: Context): GardenPlantingRepository {
+        // 构建 Repository
         return GardenPlantingRepository.getInstance(
                 AppDatabase.getInstance(context.applicationContext).gardenPlantingDao())
     }
 
-    fun provideGardenPlantingListViewModelFactory(
-        context: Context
-    ): GardenPlantingListViewModelFactory {
+    /**
+     * 提供工厂类
+     */
+    fun provideGardenPlantingListViewModelFactory(context: Context): GardenPlantingListViewModelFactory {
         val repository = getGardenPlantingRepository(context)
         return GardenPlantingListViewModelFactory(repository)
     }
@@ -52,8 +54,8 @@ object InjectorUtils {
     }
 
     fun providePlantDetailViewModelFactory(
-        context: Context,
-        plantId: String
+            context: Context,
+            plantId: String
     ): PlantDetailViewModelFactory {
         return PlantDetailViewModelFactory(getPlantRepository(context),
                 getGardenPlantingRepository(context), plantId)

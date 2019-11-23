@@ -17,7 +17,7 @@
 package com.google.samples.apps.sunflower.data
 
 class GardenPlantingRepository private constructor(
-    private val gardenPlantingDao: GardenPlantingDao
+        private val gardenPlantingDao: GardenPlantingDao
 ) {
 
     suspend fun createGardenPlanting(plantId: String) {
@@ -37,11 +37,17 @@ class GardenPlantingRepository private constructor(
     companion object {
 
         // For Singleton instantiation
-        @Volatile private var instance: GardenPlantingRepository? = null
+        @Volatile
+        private var instance: GardenPlantingRepository? = null
 
         fun getInstance(gardenPlantingDao: GardenPlantingDao) =
+                // 如果为null就创建实例
                 instance ?: synchronized(this) {
-                    instance ?: GardenPlantingRepository(gardenPlantingDao).also { instance = it }
+                    instance ?: GardenPlantingRepository(gardenPlantingDao)
+                            .also {
+                                // also用于附加效果，此处将新对象赋值给instance
+                                instance = it
+                            }
                 }
     }
 }

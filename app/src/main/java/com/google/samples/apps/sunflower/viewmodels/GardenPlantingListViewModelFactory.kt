@@ -23,9 +23,10 @@ import com.google.samples.apps.sunflower.data.GardenPlantingRepository
 /**
  * Factory for creating a [GardenPlantingListViewModel] with a constructor that takes a
  * [GardenPlantingRepository].
+ * 自定义 ViewModel 工厂类
  */
 class GardenPlantingListViewModelFactory(
-    private val repository: GardenPlantingRepository
+        private val repository: GardenPlantingRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
