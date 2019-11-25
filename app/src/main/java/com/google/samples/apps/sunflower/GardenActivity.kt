@@ -26,5 +26,15 @@ class GardenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView<ActivityGardenBinding>(this, R.layout.activity_garden)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        lifecycle.addObserver(DemoLifecyle())
+//        Android-Lifecycle超能解析-生命周期的那些事儿 https://www.jianshu.com/p/2c9bcbf092bc
+//        Android官方架构组件Lifecycle:生命周期组件详解&原理分析 https://www.jianshu.com/p/b1208012b268
+
+//        lifecycle.
     }
 }
