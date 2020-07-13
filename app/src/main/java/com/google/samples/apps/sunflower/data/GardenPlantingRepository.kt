@@ -16,6 +16,9 @@
 
 package com.google.samples.apps.sunflower.data
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+
 class GardenPlantingRepository private constructor(
         private val gardenPlantingDao: GardenPlantingDao
 ) {
@@ -29,8 +32,13 @@ class GardenPlantingRepository private constructor(
         gardenPlantingDao.deleteGardenPlanting(gardenPlanting)
     }
 
-    fun isPlanted(plantId: String) =
-            gardenPlantingDao.isPlanted(plantId)
+    //    fun isPlanted(plantId: String) =
+//            gardenPlantingDao.isPlanted(plantId)
+    fun isPlanted(plantId: String): LiveData<Boolean> {
+        val result = gardenPlantingDao.isPlanted(plantId)
+        Log.e("测试", "plantId:$plantId $result")
+        return result
+    }
 
     fun getPlantedGardens() = gardenPlantingDao.getPlantedGardens()
 
